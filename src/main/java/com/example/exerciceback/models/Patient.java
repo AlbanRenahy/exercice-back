@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "nom")
@@ -24,8 +24,8 @@ public class Patient {
     private Date dateDeNaissance;
 
     @Column(name = "sexe")
-    private  Enum sexe;
+    private  String sexe;
 
     @Column(name = "numeroSecuriteSociale")
-    private BigInteger numero_securite_sociale;
+    private String numero_securite_sociale;
 }
