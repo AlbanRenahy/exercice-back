@@ -1,6 +1,7 @@
 package com.example.exerciceback;
 
 import com.example.exerciceback.repositories.AdresseRepository;
+import com.example.exerciceback.repositories.DeplacementRepository;
 import com.example.exerciceback.repositories.InfirmiereRepository;
 import com.example.exerciceback.repositories.PatientRepository;
 import com.example.exerciceback.services.*;
@@ -21,4 +22,8 @@ public class AppConfig {
     @Bean
     public AdresseService adresseService(AdresseRepository adresseRepository){
         return new AdresseServiceImpl(adresseRepository);}
+
+    @Bean
+    public DeplacementService deplacementService(DeplacementRepository deplacementRepository){
+        return new DeplacementServiceImpl(deplacementRepository);}
 }
