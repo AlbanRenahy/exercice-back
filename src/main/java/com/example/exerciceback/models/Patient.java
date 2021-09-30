@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table( name = "patient")
@@ -28,4 +29,15 @@ public class Patient {
 
     @Column(name = "numeroSecuriteSociale")
     private String numero_securite_sociale;
+
+    @ManyToOne
+    @JoinColumn(name="adresse_id", referencedColumnName = "id")
+    private Adresse adresse;
+
+    @ManyToOne
+    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
+    private Infirmiere infirmiere;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Deplacement> deplacements;
 }

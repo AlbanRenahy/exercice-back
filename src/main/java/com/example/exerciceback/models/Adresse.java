@@ -3,6 +3,7 @@ package com.example.exerciceback.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table( name = "adresse")
@@ -23,4 +24,10 @@ public class Adresse {
 
     @Column(name = "ville")
     private String ville;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Infirmiere> infirmieres;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Patient> patients;
 }

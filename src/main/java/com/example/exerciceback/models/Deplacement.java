@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table( name = "deplacement")
@@ -18,4 +19,12 @@ public class Deplacement {
 
     @Column(name = "cout")
     private Double cout;
+
+    @ManyToOne
+    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
+    private Infirmiere infirmiere;
+
+    @ManyToOne
+    @JoinColumn(name="patient_id", referencedColumnName = "id")
+    private Patient patient;
 }
