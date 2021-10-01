@@ -3,6 +3,7 @@ package com.example.exerciceback.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table( name = "infirmiere")
@@ -26,4 +27,18 @@ public class Infirmiere {
 
     @Column(name = "telPerso")
     private  Integer telPerso;
+
+    @ManyToOne
+    @JoinColumn(name="adresse_id", referencedColumnName = "id")
+    private Adresse adresse;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="infirmiere_id")
+	private Set<Patient> patient;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="infirmiere_id")
+    private Set<Deplacement> deplacement;
+
+
 }
