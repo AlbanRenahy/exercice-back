@@ -28,11 +28,11 @@ public class Adresse {
     @Column(name = "ville")
     private String ville;
 
-    @ManyToOne
-    @JoinColumn(name="adresse_id", referencedColumnName = "id")
-    private Infirmiere infirmiere;
+    @OneToMany
+    @JoinColumn(name="adresse_id")
+	private Set<Infirmiere> infirmiere;
 
-    @ManyToOne
-    @JoinColumn(name="adresse_id", referencedColumnName = "id")
-    private Patient patient;
+	@OneToMany
+    @JoinColumn(name="adresse_id")
+	private Set<Patient> patient;
 }

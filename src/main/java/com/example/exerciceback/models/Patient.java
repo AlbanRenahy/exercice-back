@@ -33,12 +33,14 @@ public class Patient {
     private String numero_securite_sociale;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Infirmiere> infirmieres;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Adresse> adresses;
+    @JoinColumn(name="patient_id")
+    private Set<Deplacement> deplacement;
 
     @ManyToOne
-    @JoinColumn(name="patient_id", referencedColumnName = "id")
-    private Deplacement deplacement;
+    @JoinColumn(name="adresse_id", referencedColumnName = "id")
+    private Adresse adresse;
+
+    @ManyToOne
+    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
+    private Infirmiere infirmiere;
 }

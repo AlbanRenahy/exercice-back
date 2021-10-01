@@ -20,10 +20,11 @@ public class Deplacement {
     @Column(name = "cout")
     private Double cout;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="deplacement_id")
-    private Set<Infirmiere> infirmieres;
+    @ManyToOne
+    @JoinColumn(name="patient_id", referencedColumnName = "id")
+    private Patient patient;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Patient> patients;
+    @ManyToOne
+    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
+    private Infirmiere infirmiere;
 }
