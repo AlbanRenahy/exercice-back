@@ -28,13 +28,14 @@ public class Infirmiere {
     @Column(name = "telPerso")
     private  Integer telPerso;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Adresse> adresses;
+
     @ManyToOne
-    @JoinColumn(name="adresse_id", referencedColumnName = "id")
-    private Adresse adresse;
+    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
+    private Deplacement deplacement;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Patient> patients;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Deplacement> deplacements;
+    @ManyToOne
+    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
+    private Patient patient;
 }

@@ -1,5 +1,6 @@
 package com.example.exerciceback.models;
 
+import com.example.exerciceback.models.enums.Type;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,19 +26,19 @@ public class Patient {
     private Date dateDeNaissance;
 
     @Column(name = "sexe")
-    private  String sexe;
+    @Enumerated(EnumType.STRING)
+    private Type sexe;
 
     @Column(name = "numeroSecuriteSociale")
     private String numero_securite_sociale;
 
-    @ManyToOne
-    @JoinColumn(name="adresse_id", referencedColumnName = "id")
-    private Adresse adresse;
-
-    @ManyToOne
-    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
-    private Infirmiere infirmiere;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Infirmiere> infirmieres;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Deplacement> deplacements;
+    private Set<Adresse> adresses;
+
+    @ManyToOne
+    @JoinColumn(name="patient_id", referencedColumnName = "id")
+    private Deplacement deplacement;
 }

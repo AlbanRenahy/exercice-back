@@ -3,7 +3,7 @@ package com.example.exerciceback.models;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
@@ -15,16 +15,15 @@ public class Deplacement {
     private Long id;
 
     @Column(name = "date")
-    private Date date;
+    private Timestamp date;
 
     @Column(name = "cout")
     private Double cout;
 
-    @ManyToOne
-    @JoinColumn(name="infirmiere_id", referencedColumnName = "id")
-    private Infirmiere infirmiere;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="deplacement_id")
+    private Set<Infirmiere> infirmieres;
 
-    @ManyToOne
-    @JoinColumn(name="patient_id", referencedColumnName = "id")
-    private Patient patient;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Patient> patients;
 }

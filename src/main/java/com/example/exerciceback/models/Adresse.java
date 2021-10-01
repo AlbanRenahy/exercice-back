@@ -6,7 +6,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table( name = "adresse")
+@Table(name = "adresse",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "adresse_unique", columnNames = "numero")
+        })
 @Data
 public class Adresse {
     @Id
@@ -25,9 +28,11 @@ public class Adresse {
     @Column(name = "ville")
     private String ville;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Infirmiere> infirmieres;
+    @ManyToOne
+    @JoinColumn(name="adresse_id", referencedColumnName = "id")
+    private Infirmiere infirmiere;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Patient> patients;
+    @ManyToOne
+    @JoinColumn(name="adresse_id", referencedColumnName = "id")
+    private Patient patient;
 }
